@@ -43,14 +43,26 @@ public class JSONSort {
 		for (int i = 0; i < jsonarr.length(); i++) {
 			
 			JSONObject job = (JSONObject) jsonarr.get(i);
-			if(i==52)	{
-				System.out.println(job.has(sortOn));
-			}
+			/**
+			 * Here we checked if the keyelement is present in the data or not.  
+			 * If it would not be present it will skip it.
+			 * */
 			if(job.has(sortOn))
 				listJsonObj.put(job.getString(sortOn), job);
 	    }
+		/**
+		 * TreeMap is sorted according to the natural ordering of its keys, 
+		 * or by a Comparator provided at map creation time, 
+		 * depending on which constructor is used.
+		 * Sorting is done here.
+		 * 
+		 * */
 		TreeMap<String, JSONObject> sorted = new TreeMap<>();
 		sorted.putAll(listJsonObj);
+		
+		/**
+		 * Repushed the sorted data to the JSONArray
+		 * */
 		for (Entry<String, JSONObject> entry : sorted.entrySet()) {
 			jsonarray.put(entry.getValue());
 		}
